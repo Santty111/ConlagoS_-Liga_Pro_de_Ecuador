@@ -21,6 +21,12 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Models
         public int PartidosEmpatados { get; set; }
         [Range(0, 20)]
         public int PartidosPerdidos { get; set; }
-        public int TotalPuntos { get; set; }
+        public int TotalPuntos {
+            get
+            {
+                int total_puntos=PartidosGanados *3 + PartidosEmpatados;
+                return total_puntos;
+            }
+        }
     }
 }
