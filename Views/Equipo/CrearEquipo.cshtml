@@ -1,16 +1,16 @@
 ﻿@model ConlagoS__Liga_Pro_de_Ecuador.Models.Equipo
 
 @{
-    ViewData["Title"] = "EditarEquipo";
+    ViewData["Title"] = "CrearEquipo";
 }
 
-<h1>EditarEquipo</h1>
+<h1>CrearEquipo</h1>
 
 <h4>Equipo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditarEquipo">
+        <form asp-action="CrearEquipo">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdEquipo" class="control-label"></label>
@@ -43,12 +43,12 @@
                 <span asp-validation-for="PartidosPerdidos" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label>Total de Puntos</label>
-                <input class="form-control" value="@Model.TotalPuntos" readonly />
+                <label asp-for="TotalPuntos" class="control-label"></label>
+                <input asp-for="TotalPuntos" class="form-control" />
+                <span asp-validation-for="TotalPuntos" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>

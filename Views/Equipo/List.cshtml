@@ -7,7 +7,7 @@
 <h1>List</h1>
 
 <p>
-    <a class="btn btn-success" "Create">Create New</a>
+    <a asp-action="CrearEquipo" class="btn btn-success">+ Crear Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -37,33 +37,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdEquipo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartidosJugados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartidosGanados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartidosEmpatados)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PartidosPerdidos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPuntos)
-            </td>
-            <td>
-                    @Html.ActionLink("Edit", "EditarEquipo", new {id=item.IdEquipo }, new { @class = "btn btn-success" })   
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdEquipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartidosJugados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartidosGanados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartidosEmpatados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PartidosPerdidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPuntos)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditarEquipo", new { id = item.IdEquipo }, new { @class = "btn btn-success" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

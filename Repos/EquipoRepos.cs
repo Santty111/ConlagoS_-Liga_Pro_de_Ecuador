@@ -1,15 +1,12 @@
 ﻿using ConlagoS__Liga_Pro_de_Ecuador.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ConlagoS__Liga_Pro_de_Ecuador.Repos
 {
     public class EquipoRepos
     {
-        public IEnumerable<Equipo> DevuelveEstadosEquipo()
-
+        private static List<Equipo> equipos = new List<Equipo>
         {
-            List<Equipo> equipos = new List<Equipo>();
-            Equipo ldu = new Equipo
+            new Equipo
             {
                 IdEquipo = 1,
                 Nombre = "LDU",
@@ -17,10 +14,8 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Repos
                 PartidosGanados = 10,
                 PartidosPerdidos = 0,
                 PartidosEmpatados = 0
-            };
-
-            Equipo BSC = new Equipo
-
+            },
+            new Equipo
             {
                 IdEquipo = 2,
                 Nombre = "BSC",
@@ -28,25 +23,37 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Repos
                 PartidosGanados = 1,
                 PartidosPerdidos = 9,
                 PartidosEmpatados = 0
-            };
-            equipos.Add(ldu);
-            equipos.Add(BSC);
+            }
+        };
 
-            equipos = equipos.OrderBy(item=>item.TotalPuntos).ToList();
-
-            return equipos;
+        public IEnumerable<Equipo> DevuelveEstadosEquipo()
+        {
+            return equipos.OrderByDescending(item => item.TotalPuntos).ToList();
         }
 
         public Equipo DevuelveInformacionEquipo(int Id)
         {
-            var equipos = DevuelveEstadosEquipo();
-            var equipo = equipos.First(item =>  item.IdEquipo == Id);
-            return equipo;
+            return equipos.FirstOrDefault(e => e.IdEquipo == Id);
         }
+
         public bool ActualizarEquipo(Equipo equipo)
         {
-            //Logica para actulizar
-            return true;
+            var original = equipos.FirstOrDefault(e => e.IdEquipo == equipo.IdEquipo);
+            if (original != null)
+            {
+                original.Nombre = equipo.Nombre;
+                original.PartidosJugados = equipo.PartidosJugados;
+                original.PartidosGanados = equipo.PartidosGanados;
+                original.PartidosEmpatados = equipo.PartidosEmpatados;
+                original.PartidosPerdidos = equipo.PartidosPerdidos;
+                return true;
+            }
+            return false;
+        }
+
+        public void SetEquipos(List<Equipo> nuevosEquipos)
+        {
+            equipos = nuevosEquipos;
         }
     }
 }
