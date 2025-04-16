@@ -10,7 +10,6 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Models
 
         [Required]
         [MaxLength(100)]
-        [DisplayName("Ingrese el nombre del equipo")]
         public string Nombre { get; set; }
 
         [Range(0, 20)]

@@ -4,7 +4,7 @@
     ViewData["Title"] = "List";
 }
 
-<h1>List</h1>
+<h1>Tabla de posiciones</h1>
 
 <p>
     <a asp-action="CrearEquipo" class="btn btn-success">+ Crear Nuevo</a>
@@ -12,9 +12,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdEquipo)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -41,9 +38,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdEquipo)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
@@ -62,7 +56,10 @@
                     @Html.DisplayFor(modelItem => item.TotalPuntos)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditarEquipo", new { id = item.IdEquipo }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Editar", "EditarEquipo", new { id = item.IdEquipo }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    <a asp-action="DetalleEquipo" asp-route-id="@item.IdEquipo" class="btn btn-info">Información</a>
                 </td>
             </tr>
         }

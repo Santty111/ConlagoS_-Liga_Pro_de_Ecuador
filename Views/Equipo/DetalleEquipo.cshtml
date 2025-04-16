@@ -1,0 +1,43 @@
+﻿@model ConlagoS__Liga_Pro_de_Ecuador.Models.Equipo
+
+<h2>Informacion</h2>
+
+@if (ViewBag.EsFavorito == true)
+{
+    <div class="alert alert-success">
+        🏆 <strong>@Model.Nombre</strong> es el <strong>equipo favorito de la LIGA</strong> por tener más puntos.
+    </div>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <td>@Model.IdEquipo</td>
+    </tr>
+    <tr>
+        <th>Nombre</th>
+        <td>@Model.Nombre</td>
+    </tr>
+    <tr>
+        <th>Partidos Jugados</th>
+        <td>@Model.PartidosJugados</td>
+    </tr>
+    <tr>
+        <th>Ganados</th>
+        <td>@Model.PartidosGanados</td>
+    </tr>
+    <tr>
+        <th>Empatados</th>
+        <td>@Model.PartidosEmpatados</td>
+    </tr>
+    <tr>
+        <th>Perdidos</th>
+        <td>@Model.PartidosPerdidos</td>
+    </tr>
+    <tr>
+        <th>Total Puntos</th>
+        <td>@Model.TotalPuntos</td>
+    </tr>
+</table>
+
+<a asp-action="List" class="btn btn-secondary">Volver</a>

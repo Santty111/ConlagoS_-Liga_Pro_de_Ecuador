@@ -36,19 +36,19 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Controllers
                 var actualizado = _repository.ActualizarEquipo(equipo);
                 if (actualizado)
                 {
-                    return RedirectToAction("List"); // Vuelve a la tabla principal
+                    return RedirectToAction("List"); 
                 }
-                return View(equipo); // Por si falla
+                return View(equipo); 
             }
             catch (Exception)
             {
-                return View(equipo); // Podrías mostrar un mensaje de error si quieres
+                return View(equipo); 
             }
         }
-        //CREAREQUIPO
+        
         public IActionResult CrearEquipo()
         {
-            return View(); // Devuelve la vista vacía para crear
+            return View(); 
         }
 
         [HttpPost]
@@ -58,7 +58,7 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Controllers
             {
                 var equiposActuales = _repository.DevuelveEstadosEquipo().ToList();
 
-                // Verifica que no exista ya un equipo con el mismo ID
+                
                 if (equiposActuales.Any(e => e.IdEquipo == nuevoEquipo.IdEquipo))
                 {
                     ModelState.AddModelError("IdEquipo", "Ya existe un equipo con ese ID");
@@ -66,7 +66,7 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Controllers
                 }
 
                 equiposActuales.Add(nuevoEquipo);
-                _repository.SetEquipos(equiposActuales); // Usa este método (ver abajo)
+                _repository.SetEquipos(equiposActuales);
 
                 return RedirectToAction("List");
             }
@@ -75,5 +75,17 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Controllers
                 return View(nuevoEquipo);
             }
         }
+
+        public IActionResult DetalleEquipo(int id)
+        {
+            var equipo = _repository.DevuelveInformacionEquipo(id);
+            var equipos = _repository.DevuelveEstadosEquipo();
+
+            bool esFavorito = equipo.TotalPuntos == equipos.Max(e => e.TotalPuntos);
+            ViewBag.EsFavorito = esFavorito;
+
+            return View(equipo);
+        }
+
     }
 }

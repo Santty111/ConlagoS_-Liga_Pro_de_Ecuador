@@ -20,10 +20,38 @@ namespace ConlagoS__Liga_Pro_de_Ecuador.Repos
                 IdEquipo = 2,
                 Nombre = "BSC",
                 PartidosJugados = 10,
-                PartidosGanados = 1,
-                PartidosPerdidos = 9,
-                PartidosEmpatados = 0
+                PartidosGanados = 3,
+                PartidosPerdidos = 3,
+                PartidosEmpatados = 4
+            },
+            new Equipo
+            {
+                IdEquipo = 3,
+                Nombre = "Emelec",
+                PartidosJugados = 10,
+                PartidosGanados = 5,
+                PartidosPerdidos = 2,
+                PartidosEmpatados = 3
+            },
+              new Equipo
+            {
+                IdEquipo = 4,
+                Nombre = "Mushuc Runa",
+                PartidosJugados = 10,
+                PartidosGanados = 6,
+                PartidosPerdidos = 1,
+                PartidosEmpatados = 3
+            },
+               new Equipo
+            {
+                IdEquipo = 5,
+                Nombre = "IDV",
+                PartidosJugados = 10,
+                PartidosGanados = 9,
+                PartidosPerdidos = 0,
+                PartidosEmpatados = 1
             }
+
         };
 
         public IEnumerable<Equipo> DevuelveEstadosEquipo()
