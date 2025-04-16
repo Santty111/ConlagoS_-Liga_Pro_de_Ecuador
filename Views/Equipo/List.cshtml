@@ -37,8 +37,22 @@
         @foreach (var item in Model)
         {
             <tr>
+
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
+                    @{
+                        string logoFile = item.Nombre switch
+                        {
+                            "LDU" => "equipo1.png",
+                            "BSC" => "equipo2.png",
+                            "Emelec" => "equipo3.png",
+                            "Mushuc Runa" => "equipo4.png",
+                            "IDV" => "equipo5.png",
+                            _ => "default.png"
+                        };
+                    }
+                    <img src="~/images/equipos/@logoFile" alt="@item.Nombre"
+                         style="width: 30px; height: auto; margin-right: 8px;" />
+                    @item.Nombre
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.PartidosJugados)

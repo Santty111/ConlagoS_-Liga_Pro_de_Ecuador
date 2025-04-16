@@ -1,6 +1,8 @@
 ﻿@model ConlagoS__Liga_Pro_de_Ecuador.Models.Equipo
 
-<h2>Informacion</h2>
+<div class="scrollable-content">
+
+<h2>Información</h2>
 
 @if (ViewBag.EsFavorito == true)
 {
@@ -8,6 +10,22 @@
         🏆 <strong>@Model.Nombre</strong> es el <strong>equipo favorito de la LIGA</strong> por tener más puntos.
     </div>
 }
+
+@{
+    string logoFile = Model.Nombre switch
+    {
+        "LDU" => "equipo1.png",
+        "BSC" => "equipo2.png",
+        "Emelec" => "equipo3.png",
+        "Mushuc Runa" => "equipo4.png",
+        "IDV" => "equipo5.png",
+        _ => "default.png"
+    };
+}
+
+<div class="text-center mb-4">
+    <img src="~/images/equipos/@logoFile" alt="@Model.Nombre" style="width: 100px; height: auto;" />
+</div>
 
 <table class="table table-bordered">
     <tr>
@@ -39,5 +57,21 @@
         <td>@Model.TotalPuntos</td>
     </tr>
 </table>
+
+<hr />
+
+<h4>Historia del Club</h4>
+@{
+    string historia = Model.Nombre switch
+    {
+        "LDU" => "Liga Deportiva Universitaria de Quito es uno de los clubes más laureados del país, con varias participaciones internacionales destacadas.",
+        "BSC" => "Barcelona Sporting Club, fundado en 1925, es uno de los equipos más populares y con más campeonatos en Ecuador.",
+        "Emelec" => "El Club Sport Emelec, conocido por su intensidad y su clásico rivalidad con Barcelona SC, tiene una historia rica en títulos nacionales.",
+        "Mushuc Runa" => "Mushuc Runa representa al pueblo indígena ecuatoriano y ha logrado consolidarse en la Serie A en pocos años.",
+        "IDV" => "Independiente del Valle es conocido por su cantera y por alcanzar la gloria en torneos internacionales.",
+        _ => "Este equipo aún no tiene una historia registrada en el sistema."
+    };
+}
+<p>@historia</p>
 
 <a asp-action="List" class="btn btn-secondary">Volver</a>
